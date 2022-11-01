@@ -23,10 +23,10 @@ apellido: {
 ,{
     timestamps: false // deleted *created_date and *updated_date
 }
-
 );
 
-// await sequelize.sync({ force: true });
+
+
 console.log("model profesor created very good😍😊👍")
 
 module.exports = Profesores,Alumnos;

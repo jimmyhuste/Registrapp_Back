@@ -8,23 +8,24 @@ const rutas_asistencia = require("./routers/Asistencia.routes");
 // importo mi db connection
 const db = require("./database/Conexion");
 // importo mis modelos
-require("./models/Alumnos");
-require("./models/Profesores");
-require("./models/Asignaturas");
-require("./models/Asistencia");
+require("./helpers/relaciones")
 
 async function Connetion() {
     try {
-        await db.sync({ force: true}); // create table
+        await db.sync({ alter: true}); // create table
         console.log("Listening the server side");
         console.log("Databse Connected😉👌")
     } catch (error) {
         console.log("No se ha podido conectar😒" , error)
         
     }
+    
 }
+
 // llamando la funcion Connection();
 Connetion();
+ 
+
 
 const app = express();
 app.use(express.json());

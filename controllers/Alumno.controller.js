@@ -1,6 +1,8 @@
 // importo mi modelo alumno
 
 const Alumnos = require("../models/Alumnos");
+const Asignaturas = require("../models/Asignaturas");
+const Asistencias = require("../models/Asistencia");
 const Profesores = require("../models/Profesores");
 
 const postAlumno = async (req, res) => {
@@ -33,15 +35,13 @@ const postAlumno = async (req, res) => {
 const getAlumno = async (req, res) => {
     try {
         const alumnos = await Alumnos.findAll({
-            include: {
-                model: Profesores
-            }
+            include: [{ model: Profesores}, {model: Asignaturas}, {model: Asistencias}]
         });
         if (alumnos == 0) {
             return res.status(404).json({ Message: " No existe alumno en la base de datos🤦‍♂️" })
         } else {
             // console.log(miAlumno);
-            return res.json(alumnos);
+            return res.status(200).json(alumnos);
         }
     } catch (error) {
         return res.status(500).json({

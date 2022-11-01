@@ -20,7 +20,10 @@ const Asistencias = db.define('asistencias' , {
   timestamps: false // deleted *created_date and *updated_date
 }
 );
-// await sequelize.sync({ force: true });
+
+
+
+
 console.log("model asistencia created very good😍😊👍")
 
 module.exports = Asistencias;

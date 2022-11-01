@@ -1,0 +1,59 @@
+//==========>>>>>>>>>  ENDPOINTS DE LA API  <<<<<<<<<<===============
+
+const { UPDATE, DELETE } = require("sequelize/types/query-types")
+
+//===================================================================
+
+//|| ALUMNO :
+
+GET = "http://localhost:8000/api/alumno/obtener"
+
+GET_BY_ID = "http://localhost:8000/api/alumno/obtener/id"
+
+POST= "http://localhost:8000/api/alumno/crear"
+
+UPDATE= "http://localhost:8000/api/alumno/actualizar/id" 
+
+DELETE= "http://localhost:8000/api/alumno/borrar/id"
+
+
+
+//PROFESOR
+
+GET= "http://localhost:8000/api/profesor/obtener"
+
+GET_BY_ID = "http://localhost:8000/api/profesor/obtener/7"
+
+POST= "http://localhost:8000/api/profesor/crear"
+
+UPDATE= "http://localhost:8000/api/profesor/actualizar/2" 
+
+DELETE= "http://localhost:8000/api/profesor/borrar/6"
+
+
+
+//ASIGNATURA
+
+GET = "http://localhost:8000/api/asignatura/obtener"
+
+GET_BY_ID = "http://localhost:8000/api/asignatura/obtener/11"
+
+POST= "http://localhost:8000/api/asignatura/crear"
+
+UPDATE= "http://localhost:8000/api/asignatura/actualizar/1" 
+
+DELETE= "http://localhost:8000/api/asignatura/borrar/22"
+
+
+
+//ASISTENCIA
+
+GET = "http://localhost:8000/api/asistencia/obtener"
+
+GET_BY_ID = "http://localhost:8000/api/asistencia/obtener/2"
+
+POST= "http://localhost:8000/api/asistencia/crear"
+
+UPDATE= "http://localhost:8000/api/asistencia/actualizar/2" 
+
+DELETE= "http://localhost:8000/api/asistencia/borrar/2"

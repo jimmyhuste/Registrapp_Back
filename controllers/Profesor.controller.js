@@ -1,5 +1,7 @@
 // importo mi modelo Alumnos
 const Alumnos = require("../models/Alumnos");
+const Asignaturas = require("../models/Asignaturas");
+const Asistencias = require("../models/Asistencia");
 const Profesores = require("../models/Profesores");
 
 
@@ -29,9 +31,7 @@ const postProfesor = async (req, res) => {
 const getProfesor = async (req, res) => {
     try {
         const allProfe = await Profesores.findAll({
-            include:{
-                model: Alumnos
-            }
+            include:[{model: Alumnos} ]
         });
         if (allProfe == 0) {
             res.status(404).json({ Mensaje: "No se ha encontado profesor en la bse de datos🤦" })

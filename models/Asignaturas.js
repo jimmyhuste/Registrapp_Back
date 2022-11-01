@@ -26,7 +26,9 @@ seccion: {
 }
 
 );
-// await sequelize.sync({ force: true });
-console.log("model Asignatura created very good😍😊👍")
+
+
+
+// console.log("model Asignatura created very good😍😊👍")
 
 module.exports = Asignaturas;
