@@ -26,8 +26,7 @@ apellido: {
 
 );
 
-
 // await sequelize.sync({ force: true });
 console.log("model profesor created very good😍😊👍")
 
-module.exports = Profesores;
+module.exports = Profesores,Alumnos;

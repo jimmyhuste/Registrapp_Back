@@ -1,25 +1,26 @@
 // importo mi modelo alumno
 
 const Alumnos = require("../models/Alumnos");
+const Profesores = require("../models/Profesores");
 
 const postAlumno = async (req, res) => {
     try {
         const { nombre, apellido } = req.body;
-        if ( nombre && apellido){
+        if (nombre && apellido) {
             const newAlumnos = await Alumnos.create({
                 nombre, apellido
             });
-    
-            res.status(200).json({
+
+            res.status(201).json({
                 newAlumnos,
                 Mensaje: "Alumno ha sido creado correctamente😉",
                 Status: "success!"
             });
-        }else{
+        } else {
             res.status(400).json({
-                Mensaje: "No se puede cear el alumno😒",
+                Mensaje: "No se podido cear el alumno😒",
                 Action: "Debes ingresar todos los campos."
-        })
+            })
         }
     } catch (error) {
         return res.status(500).json({
@@ -31,7 +32,11 @@ const postAlumno = async (req, res) => {
 
 const getAlumno = async (req, res) => {
     try {
-        const alumnos = await Alumnos.findAll();
+        const alumnos = await Alumnos.findAll({
+            include: {
+                model: Profesores
+            }
+        });
         if (alumnos == 0) {
             return res.status(404).json({ Message: " No existe alumno en la base de datos🤦‍♂️" })
         } else {
@@ -72,7 +77,7 @@ const updateAlumno = async (req, res) => {
         const { id } = req.params;
         const { nombre, apellido } = req.body
 
-        if (nombre && apellido ) {
+        if (nombre && apellido) {
             const alumuno_Up = await Alumnos.findByPk(id);
             alumuno_Up.nombre = nombre;
             alumuno_Up.apellido = apellido;
@@ -98,16 +103,24 @@ const deleteAlumno = async (req, res) => {
         const alumDeleted = await Alumnos.destroy({
             where: { id_alumno: id }
         });
-        return res.status(204).json({
-            alumDeleted,
-            Mensaje: "Alumno ha sido borrado correctamente😉",
-            Status: "success!"
-        });
+        if (alumDeleted == 0) {
+            res.status(400).json({
+                Mensaje: `No existe Alumno con el ID '${id}' `,
+                Action: "No se puede borrar😒"
+            });
+
+        }else{
+            return res.status(200).json({
+                alumDeleted,
+                Mensaje: "Alumno ha sido borrado correctamente😉",
+                Status: "success!"
+            });
+        }
 
     } catch (error) {
         return res.status(500).json({
             message: error.message
-        })
+        });
     }
 }
 
