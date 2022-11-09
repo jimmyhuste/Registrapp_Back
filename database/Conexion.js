@@ -1,11 +1,19 @@
 const { Sequelize } = require("sequelize");
+const { 
+    DB_HOST,
+    DB_USER,
+    DB_DATABASE,
+    DB_PASSWORD,
+    DB_PORT,
+    DB_DIALECT
+} = require("../config")
 
 const db = new Sequelize(
-    'registr-app',
-    'postgres',
-    'Exantus01', {
-       host: 'localhost',
-       dialect: 'postgres'
+    DB_DATABASE,
+    DB_USER,
+    DB_PASSWORD, {
+       host: DB_HOST,
+       dialect: DB_DIALECT
    }
 );
 

@@ -1,7 +1,8 @@
 const Alumnos = require("../models/Alumnos");
 const Profesores = require("../models/Profesores");
-const Asignaturas = require("../models/Asignaturas");
+const Asignaturas = require("../models/Asig.model");
 const Asistencias = require("../models/Asistencia");
+const Secciones = require("../models/Seccion");
 
 
 Alumnos.belongsToMany(Profesores, {through : 'profesor_alumno' , foreignKey: 'profesorId'})
@@ -22,9 +23,14 @@ Asistencias.hasOne(Profesores, {through : 'profe_asis' , foreignKey: 'asistencia
 Profesores.hasOne(Asistencias, {through : 'alumno_asis'  , foreignKey: 'profesorId'})
 Asistencias.belongsToMany(Profesores, {through : 'alumno_asis' , foreignKey: 'profesorId'})
 
+Profesores.belongsToMany(Secciones, {through : 'profe_seccion'  , foreignKey: 'seccionId'})
+Secciones.belongsToMany(Profesores, {through : 'profe_asis' , foreignKey: 'seccionId'})
 
+Alumnos.belongsToMany(Secciones, {through : 'alumno_asis' , foreignKey: 'seccionId'})
+Secciones.belongsToMany(Alumnos , {through : 'alumno_asis'  , foreignKey: 'seccionId'})
 
-
+Asignaturas.belongsToMany(Secciones, {through : 'alumno_asis' , foreignKey: 'seccionId'})
+Secciones.hasOne(Alumnos , {through : 'alumno_asis'  , foreignKey: 'seccionId'})
 
 Asignaturas.belongsToMany(Alumnos, {through : 'alumno_asig'  , foreignKey: 'alumnoId'})
 Alumnos.hasOne(Asignaturas, {through : 'alumno_asig' , foreignKey: 'alumnoId' })

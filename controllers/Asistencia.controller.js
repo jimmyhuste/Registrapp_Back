@@ -1,6 +1,6 @@
 // import asistencia
 const Alumnos = require("../models/Alumnos");
-const Asignaturas = require("../models/Asignaturas");
+const Asignaturas = require("../models/Asig.model");
 const Asistencias = require("../models/Asistencia");
 const Profesores = require("../models/Profesores");
 
@@ -45,7 +45,9 @@ const getOneAsistencia = async (req, res) => {
     try {
         const { id } = req.params;
         const oneAsistencia = await Asistencias.findOne({
-            where: { id_asistencia: id }
+            where: { id_asistencia: id },
+
+            include:[{model: Alumnos}, {model: Profesores},{model:Asignaturas}]
         });
         if (!oneAsistencia) {
             res.status(404).json({ Mensaje: `No se ha encontrado asistencia con el  ID '${id}' en la base de datos.` })

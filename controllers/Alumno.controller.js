@@ -1,7 +1,7 @@
 // importo mi modelo alumno
 
 const Alumnos = require("../models/Alumnos");
-const Asignaturas = require("../models/Asignaturas");
+const Asignaturas = require("../models/Asig.model");
 const Asistencias = require("../models/Asistencia");
 const Profesores = require("../models/Profesores");
 
