@@ -13,7 +13,8 @@ const db = new Sequelize(
     DB_USER,
     DB_PASSWORD, {
        host: DB_HOST,
-       dialect: DB_DIALECT
+       dialect: DB_DIALECT,
+        port: 5432
    }
 );
 
